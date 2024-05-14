@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -48,11 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // It's sample code of Dialog Item.
   Widget _buildDialogItem(Language language) => Row(
-        children: <Widget>[
-          Text(language.name),
-          SizedBox(width: 8.0),
-          Flexible(child: Text("(${language.isoCode})"))
-        ],
+        children: <Widget>[Text(language.name), SizedBox(width: 8.0), Flexible(child: Text("(${language.isoCode})"))],
       );
 
   void _openLanguagePickerDialog() => showDialog(
@@ -88,11 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       });
 
   Widget _buildCupertinoItem(Language language) => Row(
-        children: <Widget>[
-          Text("+${language.name}"),
-          SizedBox(width: 8.0),
-          Flexible(child: Text(language.name))
-        ],
+        children: <Widget>[Text("+${language.name}"), SizedBox(width: 8.0), Flexible(child: Text(language.name))],
       );
 
   @override
@@ -102,39 +94,37 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Center(
-                  child: LanguagePickerDropdown(
-                    initialValue: Languages.korean,
-                    itemBuilder: _buildDropdownItem,
-                    onValuePicked: (Language language) {
-                      _selectedDropdownLanguage = language;
-                      print(_selectedDropdownLanguage.name);
-                      print(_selectedDropdownLanguage.isoCode);
-                    },
-                  ),
-                ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Expanded(
+            child: Center(
+              child: LanguagePickerDropdown(
+                initialValue: Languages.korean,
+                itemBuilder: _buildDropdownItem,
+                onValuePicked: (Language language) {
+                  _selectedDropdownLanguage = language;
+                  print(_selectedDropdownLanguage.name);
+                  print(_selectedDropdownLanguage.isoCode);
+                },
               ),
-              Expanded(
-                child: Center(
-                  child: MaterialButton(
-                    child: Text("Push"),
-                    onPressed: _openLanguagePickerDialog,
-                  ),
-                ),
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: MaterialButton(
+                child: Text("Push"),
+                onPressed: _openLanguagePickerDialog,
               ),
-              Expanded(
-                child: Center(
-                  child: ListTile(
-                    title: _buildCupertinoItem(_selectedCupertinoLanguage),
-                    onTap: _openCupertinoLanguagePicker,
-                  ),
-                ),
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: ListTile(
+                title: _buildCupertinoItem(_selectedCupertinoLanguage),
+                onTap: _openCupertinoLanguagePicker,
               ),
-            ]),
+            ),
+          ),
+        ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
