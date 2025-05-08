@@ -5,12 +5,12 @@ homepage: https://www.wafrat.com/
 repository: https://github.com/atn832/language_picker
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  recase: ^4.0.0
+  recase: ^4.1.0
 
 dev_dependencies:
   flutter_test:
